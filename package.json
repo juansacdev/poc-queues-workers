@@ -1,0 +1,15 @@
+{
+  "name": "poc-queues-workers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Juan Sebastián Agudelo @juansacdev <juansac.me@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bullmq": "1.86.7"
+  }
+}
