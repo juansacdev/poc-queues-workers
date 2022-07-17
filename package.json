@@ -10,6 +10,8 @@
   "author": "Juan Sebastián Agudelo @juansacdev <juansac.me@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@bull-board/api": "4.0.1",
+    "@bull-board/express": "4.0.1",
     "bullmq": "1.86.7",
     "express": "4.18.1"
   },
