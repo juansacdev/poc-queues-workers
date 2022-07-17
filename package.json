@@ -4,12 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "Juan Sebastián Agudelo @juansacdev <juansac.me@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "bullmq": "1.86.7"
+    "bullmq": "1.86.7",
+    "express": "4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.19",
+    "pino": "8.1.0",
+    "pino-pretty": "8.1.0"
   }
 }
