@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "worker": "nodemon src/worker/index.js"
   },
   "keywords": [],
   "author": "Juan Sebastián Agudelo @juansacdev <juansac.me@gmail.com>",
