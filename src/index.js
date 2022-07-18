@@ -20,6 +20,14 @@ app.post('/register', async (req, res) => {
   const { body } = req
   const queue = await myQueue
 
+  // ADD TASK WITH DELAY
+  // const job = await queue.add(`${body.jobName}`, { ...body.jobData }, { delay: 30000 })
+
+  // res.json({
+  //   msg: 'OK',
+  //   jobId: job.id
+  // })
+
   queue.add(`${body.jobName}`, { ...body.jobData })
     .then((job) => {
       res.json({
