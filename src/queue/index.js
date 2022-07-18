@@ -1,45 +1,32 @@
-const { Queue, Worker, QueueScheduler, Job } = require('bullmq')
+const { Queue, Worker, QueueScheduler, Job, QueueEvents } = require('bullmq')
+const { Logger } = require('../utils/logger')
 
 // Redis connection options
 const connectionOpts = {
   port: 6379,
   host: 'localhost',
-  password: '',
-  tls: false,
 }
 
 // Create a new connection in every instance
-async function setUpQueue(queueName, connectionOpts) {
-  const queue = new Queue(queueName, { connection: connectionOpts })
-  const queueScheduler = new QueueScheduler(queueName, { connection: connectionOpts })
+async function setUpQueues(name, connectionOpts) {
+  const queue = new Queue(name, { connection: connectionOpts })
+
+  const queueScheduler = new QueueScheduler(name, { connection: connectionOpts })
   await queueScheduler.waitUntilReady()
+
+  queue.once('cleaned', (jobs, type) => {
+    Logger.info({
+      jobs,
+      type
+    }, 'QUEUE_CLEANED')
+  })
 
   return queue
 }
 
-const myQueue = setUpQueue('myQueue', connectionOpts)
+const myQueue = setUpQueues('OPERATIONS', connectionOpts)
 
 module.exports = {
-  myQueue
+  myQueue,
+  connectionOpts
 }
-
-// const myWorker = new Worker('myworker', async (job)=>{}, { connection: {
-//   host: "myredis.taskforce.run",
-//   port: 32856
-// }});
-
-
-
-
-// async function addJobs() {
-//   const job1 = await myQueue.add('myJobName', { foo: 'bar' });
-//   const job2 = await myQueue.add('myJobName', { qux: 'baz' });
-//   return {
-//     job1,
-//     job2
-//   }
-// }
-
-// addJobs()
-//   .then(jobs => console.log(jobs))
-//   .catch(e => console.log(e))
